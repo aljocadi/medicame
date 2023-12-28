@@ -6,14 +6,29 @@ class Medicamento {
   late String _imagenEnvase;
   late DateTime _fechaCaducidad;
   late int _cantidadPorEnvase;
-  late int _cantidadInicial;
+  late int _frecuencia;
   late int _cantidadActual;
   late int _cantidadMinima;
+  late int _dosis;
   late bool _activo;
   //constructor
-  Medicamento(this._nombre, this._descripcion, this._imagenMedicamento, this._imagenEnvase, this._fechaCaducidad, this._cantidadPorEnvase, this._cantidadInicial, this._cantidadActual, this._cantidadMinima, this._activo);
+  Medicamento() {
+    this._nombre = '';
+    this._descripcion = '';
+    this._imagenMedicamento = '';
+    this._imagenEnvase = '';
+    this._fechaCaducidad = DateTime.now();
+    this._cantidadPorEnvase = 0;
+    this._frecuencia = 0;
+    this._cantidadActual = 0;
+    this._cantidadMinima = 0;
+    this._dosis = 0;
+    this._activo = false;
+  }
+  //constructor sin id
+  Medicamento.withoutId(this._nombre, this._descripcion, this._imagenMedicamento, this._imagenEnvase, this._fechaCaducidad, this._cantidadPorEnvase, this._frecuencia, this._cantidadActual, this._cantidadMinima, this._activo);
   //constructor con id
-  Medicamento.withId(this._id, this._nombre, this._descripcion, this._imagenMedicamento, this._imagenEnvase, this._fechaCaducidad, this._cantidadPorEnvase, this._cantidadInicial, this._cantidadActual, this._cantidadMinima, this._activo);
+  Medicamento.withId(this._id, this._nombre, this._descripcion, this._imagenMedicamento, this._imagenEnvase, this._fechaCaducidad, this._cantidadPorEnvase, this._frecuencia, this._cantidadActual, this._cantidadMinima, this._activo);
   //constructor con map
   Medicamento.fromMap(Map<String, dynamic> map) {
     this._id = (map['id']!=null)?map['id']:null;
@@ -23,9 +38,10 @@ class Medicamento {
     this._imagenEnvase = (map['imagenEnvase']!=null)?map['imagenEnvase']:'';
     this._fechaCaducidad = (map['fechaCaducidad']!=null)?DateTime.parse(map['fechaCaducidad']):DateTime.now();
     this._cantidadPorEnvase = (map['cantidadPorEnvase']!=null)?map['cantidadPorEnvase']:0;
-    this._cantidadInicial = (map['cantidadInicial']!=null)?map['cantidadInicial']:0;
+    this._frecuencia = (map['frecuencia']!=null)?map['frecuencia']:0;
     this._cantidadActual = (map['cantidadActual']!=null)?map['cantidadActual']:0;
     this._cantidadMinima = (map['cantidadMinima']!=null)?map['cantidadMinima']:0;
+    this._dosis = (map['dosis']!=null)?map['dosis']:0;
     this._activo = (map['activo']!=null)?map['activo']:true;
   }
 
@@ -37,9 +53,10 @@ class Medicamento {
   String get imagenEnvase => _imagenEnvase;
   DateTime get fechaCaducidad => _fechaCaducidad;
   int get cantidadPorEnvase => _cantidadPorEnvase;
-  int get cantidadInicial => _cantidadInicial;
+  int get cantidadInicial => _frecuencia;
   int get cantidadActual => _cantidadActual;
   int get cantidadMinima => _cantidadMinima;
+  int get dosis => _dosis;
   bool get activo => _activo;
 
   set nombre(String nombre) {
@@ -66,8 +83,8 @@ class Medicamento {
     this._cantidadPorEnvase = cantidadPorEnvase;
   }
 
-  set cantidadInicial(int cantidadInicial) {
-    this._cantidadInicial = cantidadInicial;
+  set frecuencia(int frecuencia) {
+    this._frecuencia = cantidadInicial;
   }
 
   set cantidadActual(int cantidadActual) {
@@ -76,6 +93,10 @@ class Medicamento {
 
   set cantidadMinima(int cantidadMinima) {
     this._cantidadMinima = cantidadMinima;
+  }
+
+  set dosis(int dosis) {
+    this._dosis = dosis;
   }
 
   set activo(bool activo) {
@@ -91,9 +112,10 @@ class Medicamento {
     map['imagenEnvase'] = _imagenEnvase;
     map['fechaCaducidad'] = _fechaCaducidad.toIso8601String();
     map['cantidadPorEnvase'] = _cantidadPorEnvase;
-    map['cantidadInicial'] = _cantidadInicial;
+    map['cantidadInicial'] = _frecuencia;
     map['cantidadActual'] = _cantidadActual;
     map['cantidadMinima'] = _cantidadMinima;
+    map['dosis'] = _dosis;
     map['activo'] = _activo;
     return map;
   }
