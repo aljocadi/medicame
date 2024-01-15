@@ -77,6 +77,8 @@ class CargadorTema with ChangeNotifier {
             brightness: Brightness.light, // Brillo del tema claro
             error: Color(0xFFFF6E40),
             onError: Color(0xFFECEFF1),
+            tertiary: Colors.white,
+            onTertiary:Colors.grey,
           ),
         )
       );
@@ -95,7 +97,9 @@ class CargadorTema with ChangeNotifier {
             brightness: Brightness.dark,  // Brillo del tema oscuro 
             error: Color(0xFFFF5252), 
             onError: Color(0xFF212121),
-          ),
+            tertiary: Colors.black,
+            onTertiary:Colors.grey,
+            ),
       )
     );
   }

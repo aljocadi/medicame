@@ -14,7 +14,7 @@ class PaginaMedicamento extends StatefulWidget {
 class _PaginaMedicamentoState extends State<PaginaMedicamento> {
   @override
   Widget build(BuildContext context) {
-    final temaActual = Provider.of<CargadorTema>(context);
+    final temaActual = Provider.of<CargadorTema>(context).temaActual;
     final _formKey = GlobalKey<FormState>();
 
     Medicamento medicamento=Medicamento();
@@ -22,17 +22,17 @@ class _PaginaMedicamentoState extends State<PaginaMedicamento> {
      appBar: AppBar(
         title: Text('Medicamento',
             style: TextStyle(
-              color: temaActual.temaActual.colorScheme.onPrimary,
+              color: temaActual.colorScheme.onPrimary,
             )),
         //configuramos el color de fondo
         flexibleSpace: Container(
           decoration: BoxDecoration(
-            color: temaActual.temaActual.colorScheme.primary,
+            color: temaActual.colorScheme.primary,
           ),
         ),
         //configuramos el color de los iconos
         iconTheme: IconThemeData(
-          color: temaActual.temaActual.colorScheme.onPrimary,
+          color: temaActual.colorScheme.onPrimary,
         ),
       ), 
       //body para crear un formulario recoger los datos de un medicamento
@@ -47,10 +47,10 @@ class _PaginaMedicamentoState extends State<PaginaMedicamento> {
                   "Datos generales",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: temaActual.temaActual.colorScheme.onSecondary,
+                    color: temaActual.colorScheme.onSecondary,
                   ),
                 ),
-                tileColor: temaActual.temaActual.colorScheme.secondary,
+                tileColor: temaActual.colorScheme.secondary,
               ),
               //Campo de texto para el nombre del medicamento
               Container(
@@ -101,7 +101,7 @@ class _PaginaMedicamentoState extends State<PaginaMedicamento> {
               ),
               //separador
               Divider(
-                color: temaActual.temaActual.colorScheme.primary,
+                color: temaActual.colorScheme.primary,
               ),
               
               ListTile(
@@ -109,10 +109,10 @@ class _PaginaMedicamentoState extends State<PaginaMedicamento> {
                   "Imagenes",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: temaActual.temaActual.colorScheme.onSecondary,
+                    color: temaActual.colorScheme.onSecondary,
                   ),
                 ),
-                tileColor: temaActual.temaActual.colorScheme.secondary,
+                tileColor: temaActual.colorScheme.secondary,
               ),
 
               // Imagenes del medicamento
@@ -124,14 +124,14 @@ class _PaginaMedicamentoState extends State<PaginaMedicamento> {
                     Text(
                       "Medicamento",
                       style: TextStyle(
-                        color: temaActual.temaActual.colorScheme.onSecondary,
+                        color: temaActual.colorScheme.onSecondary,
                       ),
                     ),
                     IconButton(icon: Icon(Icons.add_a_photo), onPressed: () {}),
                     Text(
                       "Envase",
                       style: TextStyle(
-                        color: temaActual.temaActual.colorScheme.onSecondary,
+                        color: temaActual.colorScheme.onSecondary,
                       ),
                     ),
                     IconButton(icon: Icon(Icons.add_a_photo), onPressed: () {}),
@@ -140,7 +140,7 @@ class _PaginaMedicamentoState extends State<PaginaMedicamento> {
               ),
 
               Divider(
-                color: temaActual.temaActual.colorScheme.primary,
+                color: temaActual.colorScheme.primary,
               ),
               //Cantidad Inicial del medicamento
               ListTile(
@@ -148,10 +148,10 @@ class _PaginaMedicamentoState extends State<PaginaMedicamento> {
                   "Cantidades",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: temaActual.temaActual.colorScheme.onSecondary,
+                    color: temaActual.colorScheme.onSecondary,
                   ),
                 ),
-                tileColor: temaActual.temaActual.colorScheme.secondary,
+                tileColor: temaActual.colorScheme.secondary,
               ),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 10),
@@ -247,17 +247,17 @@ class _PaginaMedicamentoState extends State<PaginaMedicamento> {
                 ),
               ),
                Divider(
-                color: temaActual.temaActual.colorScheme.primary,
+                color: temaActual.colorScheme.primary,
               ),
               ListTile(
                 title: Text(
                   "Preescipción",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: temaActual.temaActual.colorScheme.onSecondary,
+                    color: temaActual.colorScheme.onSecondary,
                   ),
                 ),
-                tileColor: temaActual.temaActual.colorScheme.secondary,
+                tileColor: temaActual.colorScheme.secondary,
               ),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -343,7 +343,7 @@ class _PaginaMedicamentoState extends State<PaginaMedicamento> {
               ),
               
               Divider(
-                color: temaActual.temaActual.colorScheme.primary,
+                color: temaActual.colorScheme.primary,
               ),
               //Estado
               ListTile(
@@ -351,10 +351,10 @@ class _PaginaMedicamentoState extends State<PaginaMedicamento> {
                   "Estado",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: temaActual.temaActual.colorScheme.onSecondary,
+                    color: temaActual.colorScheme.onSecondary,
                   ),
                 ),
-                tileColor: temaActual.temaActual.colorScheme.secondary,
+                tileColor: temaActual.colorScheme.secondary,
               ),
               //Campo de texto para la frecuencia del medicamento
               Container(
@@ -363,7 +363,7 @@ class _PaginaMedicamentoState extends State<PaginaMedicamento> {
                   title: Text(
                     "Activo",
                     style: TextStyle(
-                      color: temaActual.temaActual.colorScheme.onPrimary,
+                      color: temaActual.colorScheme.onPrimary,
                     ),
                   ),
                   value: medicamento.activo, 
@@ -374,7 +374,7 @@ class _PaginaMedicamentoState extends State<PaginaMedicamento> {
                   }),
               ),
               Divider(
-                color: temaActual.temaActual.colorScheme.primary,
+                color: temaActual.colorScheme.primary,
               ),
               ElevatedButton(
                   onPressed: () {
