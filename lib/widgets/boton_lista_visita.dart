@@ -48,26 +48,33 @@ class BotonListaVisita extends StatelessWidget {
                   children: [
                     Text(
                       fecha,
-                      style: TextStyle(color: colorTexto, fontSize: 19),
+                      style: TextStyle(
+                        color: colorTexto, 
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold),
                     ),
                     Row(
                       children: [
                         Text(
                           especialidad,
-                          style: TextStyle(color: colorTexto, fontSize: 18),
+                          style: TextStyle(
+                            color: colorTexto, 
+                            fontSize: 20),
                         ),
-                        const SizedBox(
-                          width: 20,
+                        Expanded(
+                          child: const SizedBox(
+                            width: 20,
+                          ),
                         ),
                         Text(
-                          lugar,
+                          "("+lugar+")",
                           style: TextStyle(color: colorTexto, fontSize: 16),
                         ),
                       ],
                     ),
                     Text(
                       doctor,
-                      style: TextStyle(color: colorTexto, fontSize: 15),
+                      style: TextStyle(color: colorTexto, fontSize: 14),
                     ),
                   ],
                 ),
@@ -123,11 +130,11 @@ class _BotonFondo extends StatelessWidget {
         borderRadius: BorderRadius.circular(15),
         child: Stack(children: <Widget>[
           Positioned(
-            right: -20,
-            top: -20,
+            right: -30,
+            top: -30,
             child: FaIcon(
               icono,
-              size: 150,
+              size: 170,
               color: colorTexto.withOpacity(.2),
             ),
           ),
