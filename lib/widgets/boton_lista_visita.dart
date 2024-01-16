@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class BotonLista extends StatelessWidget {
+class BotonListaVisita extends StatelessWidget {
   final IconData icono;
-  final String texto;
+  final String especialidad;
+  final String doctor;
+  final String lugar;
+  final String fecha;
   final Color color1;
   final Color color2;
   final Function onPress;
   final Color colorTexto;
-  const BotonLista(
+  const BotonListaVisita(
       {super.key,
       this.icono = FontAwesomeIcons.powerOff,
-      required this.texto,
+      required this.especialidad,
+      required this.doctor,
+      required this.lugar,
+      required this.fecha,
       this.color1 = const Color(0xFF6989F5),
       this.color2 = const Color(0xFF906EF5),
       required this.onPress,
@@ -37,9 +43,33 @@ class BotonLista extends StatelessWidget {
                 width: 20,
               ),
               Expanded(
-                child: Text(
-                  texto,
-                  style: TextStyle(color: colorTexto, fontSize: 18),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      fecha,
+                      style: TextStyle(color: colorTexto, fontSize: 19),
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          especialidad,
+                          style: TextStyle(color: colorTexto, fontSize: 18),
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        Text(
+                          lugar,
+                          style: TextStyle(color: colorTexto, fontSize: 16),
+                        ),
+                      ],
+                    ),
+                    Text(
+                      doctor,
+                      style: TextStyle(color: colorTexto, fontSize: 15),
+                    ),
+                  ],
                 ),
               ),
               FaIcon(FontAwesomeIcons.chevronRight, size: 40, color: colorTexto,),

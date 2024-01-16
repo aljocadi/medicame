@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:medicame/modelos/base_datos.dart';
 import 'package:medicame/paginas/pagina_visita_medica.dart';
-import 'package:medicame/widgets/boton_lista.dart';
+import 'package:medicame/widgets/boton_lista_visita.dart';
 import 'package:medicame/widgets/header.dart';
+import 'package:intl/intl.dart';
 
 class _ItemBoton {
 
@@ -37,7 +38,7 @@ class PaginaVisitasMedicas extends StatelessWidget {
                   return ListView.builder(
                     itemCount: snapshot.data!.length,
                     itemBuilder: (context, index) {
-                      return BotonLista(icono: FontAwesomeIcons.plus, texto: snapshot.data![index]["especialidad"] , color1:  Color(0xff66A9F2),color2:Color(0xff536CF6) , onPress: (){}, colorTexto: Colors.white.withOpacity(.8),);
+                      return BotonListaVisita(icono: FontAwesomeIcons.plus, especialidad: snapshot.data![index]["especialidad"], lugar:snapshot.data![index]["lugar"],doctor: snapshot.data![index]["doctor"],fecha: DateFormat('dd/MM/yyyy HH:mm').format(DateTime.parse(snapshot.data![index]["fecha"])) , color1:  Color(0xff66A9F2),color2:Color(0xff536CF6) , onPress: (){}, colorTexto: Colors.white.withOpacity(.8),);
                     },
                   );
                 }
@@ -62,25 +63,6 @@ class PaginaVisitasMedicas extends StatelessWidget {
 }
 
 
-class BotonListaTemp extends StatelessWidget {
-  const BotonListaTemp({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return BotonLista(
-      icono: FontAwesomeIcons.plusMinus,
-      texto: 'Agregar Visitas',
-      color1: Color(0xFF6989F5),
-      color2: Color(0xFF906EF5),
-      onPress: () {
-        print('Pulsado');
-      },
-      colorTexto: Colors.white.withOpacity(.8),
-    );
-  }
-}
 
 class CabeceraPagina extends StatelessWidget {
   @override
