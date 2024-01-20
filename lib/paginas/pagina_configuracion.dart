@@ -1,14 +1,31 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
+import 'package:medicame/modelos/configuracion.dart';
+import 'package:medicame/modo/modo_trabajo.dart';
 import 'package:medicame/tema/tema.dart';
 import 'package:provider/provider.dart';
 
-class PaginaConfiguracion extends StatelessWidget {
-  const PaginaConfiguracion({super.key});
+class PaginaConfiguracion extends StatefulWidget {
+  
+  PaginaConfiguracion({super.key});
+  
+
+  @override
+  State<PaginaConfiguracion> createState() => _PaginaConfiguracionState();
+}
+
+class _PaginaConfiguracionState extends State<PaginaConfiguracion> {
+  
 
   @override
   Widget build(BuildContext context) {
     final temaActual = Provider.of<CargadorTema>(context);
+    final modoTrabajo=Provider.of<ModoTrabajo>(context);
 
+    setState(() {
+      
+    });
     return Scaffold(
       appBar: AppBar(
         title: Text('Ajustes',
@@ -78,6 +95,16 @@ class PaginaConfiguracion extends StatelessWidget {
             ),
             tileColor: temaActual.temaActual.colorScheme.secondary,
           ),
+          SwitchListTile(
+            title: Text(
+              "Funcionamiento local",
+              style: TextStyle(
+                color: temaActual.temaActual.colorScheme.onPrimary,
+              ),
+            ),
+            value: modoTrabajo.modoLocal,
+            onChanged: (value) => modoTrabajo.modoLocal = value,
+            ),
         ]),
       ),
     );
