@@ -3,6 +3,8 @@ import 'package:medicame/modelos/base_datos.dart';
 import 'package:medicame/modelos/configuracion.dart';
 import 'package:medicame/modo/modo_trabajo.dart';
 import 'package:provider/provider.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class VisitaMedica{
   int? _id;
@@ -137,24 +139,37 @@ class VisitaMedica{
 
   //lectura de datos de la API
   Future<List<VisitaMedica>> _getFromAPI(int numero) async {
-
-    List<VisitaMedica> lista = [];
-    VisitaMedica visitaMedica = new VisitaMedica();
-    var map = new Map<String, dynamic>();
-    
-    for(int i=0;i<numero;i++)
-    {
-      await Future.delayed(Duration(milliseconds: 200), () {
-        map['id'] = i;
-        map['especialidad'] = 'Especialidad '+i.toString();
-        map['doctor'] = 'Doctor '+i.toString();
-        map['lugar'] = 'Lugar '+i.toString();
-        map['fecha'] = DateTime.now().toString();
-        visitaMedica = VisitaMedica.fromMap(map);
+    final response = await http.get(Uri.parse('http://192.168.68.110:5000/api/visita'));
+    if (response.statusCode == 200) {
+      List<VisitaMedica> lista = [];
+      VisitaMedica visitaMedica = new VisitaMedica();
+      var data = json.decode(response.body);
+      for(int i=0;i<numero;i++)
+      {
+        visitaMedica = VisitaMedica.fromMap(data[i]);
         lista.add(visitaMedica);
-      });
+      }
+      return lista;
+    } else {
+      throw Exception('Error al leer datos de la API');
     }
-    return lista;
+    // List<VisitaMedica> lista = [];
+    // VisitaMedica visitaMedica = new VisitaMedica();
+    // var map = new Map<String, dynamic>();
+    
+    // for(int i=0;i<numero;i++)
+    // {
+    //   await Future.delayed(Duration(milliseconds: 200), () {
+    //     map['id'] = i;
+    //     map['especialidad'] = 'Especialidad '+i.toString();
+    //     map['doctor'] = 'Doctor '+i.toString();
+    //     map['lugar'] = 'Lugar '+i.toString();
+    //     map['fecha'] = DateTime.now().toString();
+    //     visitaMedica = VisitaMedica.fromMap(map);
+    //     lista.add(visitaMedica);
+    //   });
+    // }
+    // return lista;
   }
 
   //Metodo para convertir un objeto de tipo VisitaMedica a Map
