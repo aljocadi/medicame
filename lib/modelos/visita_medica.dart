@@ -131,21 +131,22 @@ class VisitaMedica{
     else
     {
       //Si el modo de trabajo es remoto, se cargan los datos de la API
-      proximasVisitas = await _getFromAPI(10);
+      proximasVisitas = await _getFromAPI();
     }
     
     return proximasVisitas;
   }
 
   //lectura de datos de la API
-  Future<List<VisitaMedica>> _getFromAPI(int numero) async {
-    final response = await http.get(Uri.parse('http://192.168.68.110:5000/api/visita'));
+  Future<List<VisitaMedica>> _getFromAPI() async {
+    final response = await http.get(Uri.parse('http://10.171.167.222:5000/api/visita'));
     if (response.statusCode == 200) {
       List<VisitaMedica> lista = [];
       VisitaMedica visitaMedica = new VisitaMedica();
       var data = json.decode(response.body);
-      for(int i=0;i<numero;i++)
+      for(int i=0;i<data.length;i++)
       {
+        print(data[i]);
         visitaMedica = VisitaMedica.fromMap(data[i]);
         lista.add(visitaMedica);
       }
